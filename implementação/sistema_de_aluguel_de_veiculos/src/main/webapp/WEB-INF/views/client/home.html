@@ -1,0 +1,30 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title th:text="${clientDTO.getName()}"></title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+<p th:text="'Olá, ' + ${clientDTO.getEmail()}"></p>
+<p>Alterar informações do perfil</p>
+<form action="#" th:action="@{'client/update/{cpf}'(cpf=${clientDTO.getCpf()})}" method="post" enctype="multipart/form-data">
+    CPF: <input type="text" name="rg" placeholder="RG" th:value="${clientDTO.getCpf()}" disabled>
+    RG: <input type="text" name="rg" placeholder="RG" th:value="${clientDTO.getRg()}" disabled>
+    Senha: <input type="text" name="password" placeholder="Senha" th:value="${clientDTO.getPassword()}">
+    Nome: <input type="text" name="name" placeholder="Nome" th:value="${clientDTO.getName()}">
+    <button type="submit">Submit</button>
+</form>
+<form action="#" th:action="@{'client/delete/{cpf}'(cpf=${clientDTO.getCpf()})}" th:method="delete" >
+    <input type="hidden" name="_method" value="delete" />
+    <button type="submit" id="deleteAccountButton">Deletar Conta</button>
+</form><br>
+<form method="get" th:action="@{'client/getAddress/{cpf}'(cpf=${clientDTO.getCpf()})}" th:method="get">
+    <input type="hidden" name="_method" value="get" />
+    <button type="submit" id="getAddressButton">Editar Endereço</button>
+</form>
+<form method="get" th:action="@{'client/getEmployers/{cpf}'(cpf=${clientDTO.getCpf()})}" th:method="get">
+    <input type="hidden" name="_method" value="get" />
+    <button type="submit" id="getEmployersButton">Editar Empregadores</button>
+</form>
+</body>
+</html>
